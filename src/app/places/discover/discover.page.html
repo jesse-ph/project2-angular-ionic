@@ -12,7 +12,7 @@
 
 <ion-content class="ion-padding">
   <!-- <ion-segment (ionChange)="onFilterUpdate($event)" [value]="discoverSegment"> -->
-  <ion-segment [(ngModel)]="discoverSegment" (ionChange)="onFilterUpdate()">
+  <ion-segment [(ngModel)]="discoverSegment" (ionChange)="onFilterUpdate()" color="primary">
     <ion-segment-button value="all">All Places</ion-segment-button>
     <ion-segment-button value="bookable">Bookable Places</ion-segment-button>
   </ion-segment>
