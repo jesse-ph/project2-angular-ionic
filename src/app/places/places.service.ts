@@ -26,6 +26,20 @@ export class PlacesService {
       'Well-known beach in the world located in the Philippines.',
       'https://upload.wikimedia.org/wikipedia/commons/c/cd/Boracay_White_Beach.png',
       5000
+    ),
+    new Place(
+      'p2',
+      'Intramuros',
+      'Historic place in the Manila and had been established during Spanish colony.',
+      'https://upload.wikimedia.org/wikipedia/commons/7/7d/Fort_Santiago%2C_Intramuros.JPG',
+      300
+    ),
+    new Place(
+      'p3',
+      'Boracay',
+      'Well-known beach in the world located in the Philippines.',
+      'https://upload.wikimedia.org/wikipedia/commons/c/cd/Boracay_White_Beach.png',
+      5000
     )
   ];
 
