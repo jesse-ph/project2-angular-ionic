@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>{{ selectedPlace.title }}</ion-title>
-    <ion-buttons>
+    <ion-buttons slot="end">
       <ion-button (click)="onCancel()">
         <ion-icon name="close"></ion-icon>
       </ion-button>
@@ -10,7 +10,91 @@
 </ion-header>
 
 <ion-content class="ion-text-center ion-padding">
-  <h1>{{ selectedPlace.description }}</h1>
-  <ion-button color="primary" (click)="onBookPlace()">Book</ion-button>
+  <form (ngSubmit)="onBookPlace()" #f="ngForm">
+    <ion-grid>
+      <ion-row>
+        <ion-col sizeSm="6" offsetSm="3">
+          <ion-item>
+            <ion-label position="floating">First Name</ion-label>
+            <ion-input
+              name="first-name"
+              type="text"
+              ngModel
+              required
+            ></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col sizeSm="6" offsetSm="3">
+          <ion-item>
+            <ion-label position="floating">Last Name</ion-label>
+            <ion-input
+              name="last-name"
+              type="text"
+              ngModel
+              required
+            ></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col sizeSm="6" offsetSm="3">
+          <ion-item>
+            <ion-label position="floating">Number of Guests</ion-label>
+            <ion-select [ngModel]="'2'" name="guest-number">
+              <ion-select-option value="1">1</ion-select-option>
+              <ion-select-option value="2">2</ion-select-option>
+              <ion-select-option value="3">3</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col sizeSm="6" offsetSm="3">
+          <ion-item>
+            <ion-label position="floating">From</ion-label>
+            <ion-datetime
+              presentation="date"
+              [min]="selectedPlace.availableFrom.toISOString()"
+              [max]="selectedPlace.availableTo.toISOString()"
+              [ngModel]="startDate"
+              name="date-from"
+              required
+              (ngModelChange)="setMinDate($event)"
+            ></ion-datetime>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col sizeSm="6" offsetSm="3">
+          <ion-item>
+            <ion-label position="floating">To</ion-label>
+            <ion-datetime
+              *ngIf="endDate"
+              presentation="date"
+              [min]="minDateTo"
+              [max]="selectedPlace.availableTo.toISOString()"
+              [ngModel]="endDate"
+              name="date-to"
+              required
+            ></ion-datetime>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col sizeSm="6" offsetSm="3">
+          <ion-button
+            color="primary"
+            expand="block"
+            (click)="onBookPlace()"
+            [disabled]="!f.valid || !datesValid()"
+          >
+            Book!
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
 </ion-content>
 
